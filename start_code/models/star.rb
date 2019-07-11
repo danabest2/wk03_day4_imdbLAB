@@ -1,3 +1,5 @@
+require_relative("../db/sql_runner")
+
 class Star
 
 attr_reader :id
@@ -19,19 +21,19 @@ def save()
         (
           $1, $2
         )
-        RETURN id"
+        RETURNING id"
   values = [@first_name, @last_name]
-  star = SqlRunner.run(sql, values).first
+  star = SqlRunner.run( sql, values ).first
   @id = star['id'].to_i
 end
 
 
-def self.delete_all()
-
-  sql = "DELETE FROM stars"
-  values = []
-  SqlRunner.run(sql, values)
-end
+# def self.delete_all()
+#
+#   sql = "DELETE FROM stars"
+#   values = []
+#   SqlRunner.run(sql, values)
+# end
 
 
 
