@@ -24,6 +24,13 @@ class Casting
     @id = casting['id'].to_i
   end
 
+  def self.all()
+    sql = "SELECT * FROM castings"
+    castings = SqlRunner.run(sql)
+    result = castings.map{ |cast|  Casting.new(cast) }
+    return result
+  end
+
   def self.delete_all()
     sql = "DELETE FROM castings"
     values = []
