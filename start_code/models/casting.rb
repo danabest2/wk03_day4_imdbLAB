@@ -15,6 +15,14 @@ class Casting
 
   end
 
+  def save()
+    sql = "INSERT INTO castings (movie_id, star_id)
+    VALUES ($1, $2)
+    RETURNING id"
+    values = [@movie_id, @star_id]
+    casting = SqlRunner.run(sql, values).first
+    @id = casting['id'].to_i
+  end
 
 
 end
